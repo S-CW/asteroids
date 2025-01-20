@@ -4,6 +4,8 @@ from circleshape import CircleShape
 from constants import ASTEROID_MIN_RADIUS
 
 class Asteroid(CircleShape):
+    smash_sound = pygame.mixer.Sound("./assets/sound/smash-meteorite.mp3")
+    
     def __init__(self, x, y, radius):
         super().__init__(x, y, radius)
 
@@ -14,6 +16,7 @@ class Asteroid(CircleShape):
         self.position += (self.velocity * dt)
 
     def split(self):
+        Asteroid.smash_sound.play()
         self.kill()
 
         if self.radius <= ASTEROID_MIN_RADIUS:

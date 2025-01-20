@@ -5,6 +5,8 @@ from shot import Shot
 
 
 class Player(CircleShape):
+    shoot_sound = pygame.mixer.Sound("./assets/sound/retro-laser.mp3")
+    
     def __init__(self, x, y):
         super().__init__(x, y, PLAYER_RADIUS)
         self.rotation = 0
@@ -29,7 +31,7 @@ class Player(CircleShape):
 
         if keys[pygame.K_SPACE]:
             self.shoot()
-     
+            
     def triangle(self):
         forward = pygame.Vector2(0, 1).rotate(self.rotation)
         right = pygame.Vector2(1, 0).rotate(self.rotation) * self.radius / 1.5
@@ -58,3 +60,5 @@ class Player(CircleShape):
 
         shot = Shot(shot_start_pos.x, shot_start_pos.y)
         shot.velocity = forward * PLAYER_SHOOT_SPEED
+        
+        Player.shoot_sound.play()

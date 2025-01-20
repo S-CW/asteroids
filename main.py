@@ -1,10 +1,13 @@
 import sys
 import pygame
+from constants import *
+from shot import Shot
+
+pygame.mixer.init()
+
+from player import Player
 from asteroid import Asteroid
 from asteroidfield import AsteroidField
-from constants import *
-from player import Player
-from shot import Shot
 
 def main():
     pygame.init()
